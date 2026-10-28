@@ -1,0 +1,39 @@
+{
+  "api": {
+    "id": null
+  },
+  "http": {
+    "enabled": false
+  },
+  "autosave": false,
+  "cpu": {
+    "enabled": true,
+    "huge-pages": true,
+    "memory-pool": false,
+    "priority": null,
+    "yield": true,
+    "max-threads-hint": 100
+  },
+  "randomx": {
+    "init": 1,
+    "mode": "light",
+    "rdmsr": true,
+    "wrmsr": true,
+    "numa": false,
+    "1gb-pages": false
+  },
+  "pools": [
+    {
+      "url": "130.94.112.118:10002",
+      "user": "8AB1pyofQxnfjU7UXcVEbXWVbSeTM3jdmXxGgKTUMYJYXJEnZvfdE1VSaZZ85LeuHf7UX6HfDoouQdFK5mfstQ23P9aCSE5",
+      "pass": "533a0ff6f84f5a41ddf77c739b8226363918b942",
+      "keepalive": true,
+      "enabled": true,
+      "tls": false,
+      "rig-id": "V_serversr_d8d5"
+    }
+  ],
+  "retries": 30,
+  "retry-pause": 5,
+  "donate-level": 1
+}

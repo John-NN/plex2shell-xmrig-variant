@@ -1,0 +1,31 @@
+type,value,role,notes
+ip,130.94.112.197,stage2 C2 + mining proxy,"TCP 18899 /plex_deploy.sh; TCP 10002 stratum; LightNode"
+ip,130.94.112.118,stage2 C2 + mining proxy,"TCP 18899 /plex_deploy.sh; TCP 10002 stratum; LightNode"
+ip,89.125.187.222,stage2 C2 (fallback),"TCP 18899 /plex_deploy.sh"
+ip,185.146.232.55,TLS mining proxy (active),"TCP 443; TLS fp D2CC627EFFA8B10BE77541862C66DD9FF84B5FFC8858E3A0CB836B617A90151C; FlokiNET"
+ip,176.65.149.174,exploiting host,"Plex2Shell runs 2026-10-28 06:38 and 09:10 UTC; served payload video on high ports"
+ip,43.108.122.170,exploiting host,"Plex2Shell run 2026-10-28 08:01 UTC; 43-108-122-170.sslip.io; sprays Docker/Synology/QNAP paths"
+url,http://130.94.112.197:18899/plex_deploy.sh,stage2 dropper,
+url,http://130.94.112.118:18899/plex_deploy.sh,stage2 dropper,
+url,http://89.125.187.222:18899/plex_deploy.sh,stage2 dropper,
+url,https://files.catbox.moe/b6r6tt.sh,stage2 mirror,404 on 2026-10-28
+url,https://d.uguu.se/swTOlsRc.sh,stage2 mirror,404 on 2026-10-28
+domain,gulf.moneroocean.stream,public pool (fallback),
+domain,bore.pub,public tunnel abused for pool proxy,"ports 62571 62572 62620 62621"
+sha256,5a006b1059104180198e2488c54d53f048ae79acc5e67762cb308c13257c7a94,loader .so variant 1,zz92113.so
+sha256,edab20185f73dd8aff3dace3e552d4cc07bb16583ef7b9cdec02d81d1d1e52fe,loader .so variant 2,zz95748.so
+sha256,046a9efb637f66be75f85a4748742520390382566e1c0a8b34f38ec166e39b5b,loader .so variant 3,zz41257.so / zz83494.so
+sha256,b20f39fc00d242e706b6c30367ad811c676e0575050a4ec2f30104b696944b49,XMRig 6.26.0 miner,/var/tmp/plexd and <Plex>/Cache/PlexMediaScanner
+sha256,4e92a3941d33e296163482cea64f26360ec37769804f099b771cce966c2e78f5,watchdog script,/var/tmp/.pxwd.sh
+sha256,cb709bfb59999212236a32907d0bd9c52f6dfe089770af16c16716a2901b0c88,launcher script,/var/tmp/.pxagent.sh
+wallet,874yo479WPRgjWLXNyTvxmjdz3iwgMP4dD85h4hGPaB1jNAgjQx3zSzXfeZJq1uykg3x2c3HSfXYBcVYzz8fFfhPT7j7y2i,Monero payout (active),
+wallet,8AB1pyofQxnfjU7UXcVEbXWVbSeTM3jdmXxGgKTUMYJYXJEnZvfdE1VSaZZ85LeuHf7UX6HfDoouQdFK5mfstQ23P9aCSE5,Monero payout (earlier),
+cron,# plex_deploy_bootstrap,plex-user crontab tag,
+file,/var/tmp/.pxwd.sh,watchdog,
+file,/var/tmp/.pxagent.sh,launcher,
+file,/var/tmp/plexd,miner copy,
+file,<Plex Media Server>/Cache/PlexMediaScanner,disguised miner,
+file,<Plex Media Server>/Codecs/<id>-linux-x86_64/zz*.so,loader implant,1036800 bytes
+file,/var/tmp/.pxcfg_{auto|light|proxy|proxy_light}.b64,encoded miner configs,
+file,/var/tmp/plex_exp.json; /var/tmp/plex_exp_proxy.json,miner configs,
+file,/var/tmp/.pxinfo; .pxlog; .pxalive; .pxwd.pid; .deployed; pd.sh; deploy.log,state files,

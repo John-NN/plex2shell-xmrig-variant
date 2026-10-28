@@ -1,0 +1,17 @@
+#!/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
+export PATH
+PIDF="/var/tmp/.pxwd.pid"
+if [ -f "$PIDF" ]; then
+  OLD=$(cat "$PIDF" 2>/dev/null)
+  if [ -n "$OLD" ] && [ -d "/proc/$OLD" ]; then
+    CMD=$(tr '\0' ' ' < "/proc/$OLD/cmdline" 2>/dev/null)
+    case "$CMD" in *"/var/tmp/.pxwd.sh"*) exit 0;; esac
+  fi
+fi
+echo $$ > "$PIDF"
+trap 'rm -f "$PIDF"' EXIT
+while true; do
+  /bin/sh "/var/tmp/.pxagent.sh"
+  sleep 45
+done
